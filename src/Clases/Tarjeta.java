@@ -11,7 +11,7 @@ public class Tarjeta {
 
 	
 	//Constructor
-	public Tarjeta(int numeroDeTarjeta, Clases.Cardholder Cardholder, Fecha fechaVencimiento, Marca marca) {
+	public Tarjeta(int numeroDeTarjeta, Cardholder Cardholder, Fecha fechaVencimiento, Marca marca) {
 		super();
 		this.numeroDeTarjeta = numeroDeTarjeta;
 		this.cardholder = Cardholder;

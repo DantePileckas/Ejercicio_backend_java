@@ -1,5 +1,7 @@
 package Test;
 
+import java.time.LocalDate;
+
 import Clases.Cardholder;
 import Clases.Fecha;
 import Clases.Marca;
@@ -55,7 +57,7 @@ public class test {
 		System.out.println("");
 		sistema.validarFecha(tarjeta2.getNumeroDeTarjeta());//Venció el 1 de abril de este año
 		System.out.println("");
-		
+		sistema.validarFecha(tarjeta3.getNumeroDeTarjeta());//Vence en el 2018		
 		System.out.println("");
 		
 		//Identificar si una tarjeta es distinta a otra
@@ -66,16 +68,14 @@ public class test {
 
 		System.out.println("");
 		//Obtener por medio de un método la tasa de una operación informando marca e importe
-		Fecha fecha1_test = new Fecha(2, 4, 20);
-		Fecha fecha2_test = new Fecha(5, 5, 22);
-		Fecha fecha3_test = new Fecha(9, 6, 19);
 		
-		System.out.println(sistema.calcularTasa(Marca.NARA, fecha1_test));
-		System.out.println(sistema.calcularTasa(Marca.AMEX, fecha2_test));
-		System.out.println(sistema.calcularTasa(Marca.VISA, fecha3_test));
 		
+		System.out.println("La tasa es de: " + sistema.calcularTasa(Marca.NARA, 1500) + " %");
+		System.out.println("");
+		System.out.println("La tasa es de: " + sistema.calcularTasa(Marca.AMEX, 1000) + " %");
+		System.out.println("");
+		System.out.println("La tasa es de: " + sistema.calcularTasa(Marca.VISA, 330) + " %");
 
-		
 	}
 
 }

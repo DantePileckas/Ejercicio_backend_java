@@ -1,14 +1,13 @@
 package Clases;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Locale;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class Sistema {
 
@@ -151,31 +150,46 @@ public class Sistema {
 	
 	
 	//Obtener por medio de un método la tasa de una operación informando marca e importe
-	public double calcularTasa(Marca marca, Fecha fecha) {
-		double importe = 0; 
+	public double calcularTasa(Marca marca, double importe) {
+		double tasa = 0; 
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("d/M/yy"); 
+
+		int año = Calendar.getInstance().get(Calendar.YEAR);
+		año = año % 100; //obtener los últimos dos dígitos
+				
+		int mes = Calendar.getInstance().get(Calendar.MONTH);
+		mes++; //Al ser un array, toma enero como índice 0. Por ende, incremento uno (Abril es /4)
+				
+		int dia = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
 		
+
+	
 		switch (marca) {
 		case VISA: {
-			importe = fecha.getAño() / fecha.getMes(); 
+			tasa = año / mes; 
+			importe += (tasa * importe) / 100;
+			
 		}
 		break;
 		
 		case NARA:{
-			importe = fecha.getDia()  * 0.5;
+			tasa = dia  * 0.5;
+			importe += (tasa * importe) / 100;
 		}
 		break;
 		case AMEX:{
-			importe = fecha.getMes()  * 0.1;
-
+			tasa = mes  * 0.1;
+			importe += (tasa * importe) / 100;
 		}
 		break;
+		
 		
 		default:
 			System.out.println("Valor incorrecto: " + marca);
 
 		}
-		
-		return importe;
+		System.out.println("Marca: " + marca + ", importe aplicado con interés: " + importe);
+		return tasa;
 		
 	}
 	
